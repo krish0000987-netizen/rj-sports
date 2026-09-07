@@ -1659,7 +1659,7 @@ p { color: var(--text-body); font-size: 1rem; }
   .hamburger-btn {
     display: none !important;
   }
-  .header-actions .btn-header-quote {
+  .header-actions .btn {
     display: inline-flex !important;
   }
 }
@@ -1674,12 +1674,8 @@ p { color: var(--text-body); font-size: 1rem; }
     display: flex !important;
   }
 
-  .header-actions .btn-whatsapp {
-    display: none !important;
-  }
-
-  .header-actions .btn-header-quote {
-    display: none !important; /* Kept inside hamburger drawer on mobile/tablet */
+  .header-actions .btn {
+    display: none !important; /* Hidden in mobile/tablet header; accessible inside drawer */
   }
 
   .footer-top {
