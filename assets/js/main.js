@@ -201,6 +201,33 @@ function initHeroSlider() {
   slider.addEventListener('mouseenter', stopTimer);
   slider.addEventListener('mouseleave', startTimer);
 
+  // Mobile touch swipe gestures
+  let touchStartX = 0;
+  let touchStartY = 0;
+  slider.addEventListener('touchstart', (e) => {
+    if (e.touches.length === 1) {
+      touchStartX = e.touches[0].clientX;
+      touchStartY = e.touches[0].clientY;
+      stopTimer();
+    }
+  }, { passive: true });
+
+  slider.addEventListener('touchend', (e) => {
+    if (e.changedTouches.length === 1) {
+      const diffX = e.changedTouches[0].clientX - touchStartX;
+      const diffY = e.changedTouches[0].clientY - touchStartY;
+      // Only trigger if horizontal swipe is greater than vertical movement
+      if (Math.abs(diffX) > 40 && Math.abs(diffX) > Math.abs(diffY)) {
+        if (diffX < 0) {
+          nextSlide();
+        } else {
+          prevSlide();
+        }
+      }
+      startTimer();
+    }
+  }, { passive: true });
+
   startTimer();
 }
 
